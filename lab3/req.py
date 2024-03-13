@@ -1,22 +1,22 @@
 import requests
 
 # 1.1
-requst = requests.get('http://127.0.0.1:5000/number?param=8')
-a = requst.json()["number"]
+request = requests.get('http://127.0.0.1:5000/number?param=8')
+a = request.json()["number"]
 
 # 1.2
-requst = requests.post('http://127.0.0.1:5000/number', json={
+request = requests.post('http://127.0.0.1:5000/number', json={
     "jsonParam": 8
 })
-b = requst.json()["number"]
-operation_b = requst.json()["operation"]
+b = request.json()["number"]
+operation_b = request.json()["operation"]
 
 # 1.3
-requst = requests.delete('http://127.0.0.1:5000/number', json={
+request = requests.delete('http://127.0.0.1:5000/number', json={
     "jsonParam": 8
 })
-c = requst.json()["number"]
-operation_c = requst.json()["operation"]
+c = request.json()["number"]
+operation_c = request.json()["operation"]
 
 # 1.4
 def operations(a, b, operation):
@@ -37,12 +37,14 @@ if operation_c == 'mul' or operation_c == 'div':
 else:
     result = operations(operations(a, b, operation_b), c, operation_c)
 
+print('=' * 64)
 print(f'Выражение: {a} {operation_b} {b} {operation_c} {c}')
 print(f'Результат: {int(result)}')
+print('=' * 64)
 
 # 3 задание
 
 # 1. curl -X GET http://127.0.0.1:5000/number?param=8
-# 2. curl -XPOST -d "{\"jsonParam\": 8}" -H "Content-Type: application/json" http://127.0.0.1:5000/number
-# 3. curl -XDELETE -d "{\"jsonParam\": 8}" -H "Content-Type: application/json" http://127.0.0.1:5000/number
-# 4.
+# 2. curl -X POST -d "{\"jsonParam\": 8}" -H "Content-Type: application/json" http://127.0.0.1:5000/number
+# 3. curl -X DELETE -d "{\"jsonParam\": 8}" -H "Content-Type: application/json" http://127.0.0.1:5000/number
+# 4. 
